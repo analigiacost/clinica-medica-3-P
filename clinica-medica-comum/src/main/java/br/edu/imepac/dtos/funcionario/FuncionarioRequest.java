@@ -1,9 +1,6 @@
 package br.edu.imepac.dtos.funcionario;
 
 import java.time.LocalDate;
-
-public class FuncionarioRequest {
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -29,4 +26,4 @@ import lombok.AllArgsConstructor;
         private LocalDate nascimento;
     }
 
-}
+

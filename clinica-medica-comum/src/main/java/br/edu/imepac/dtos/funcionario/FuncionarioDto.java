@@ -1,17 +1,15 @@
 package br.edu.imepac.dtos.funcionario;
 
-import java.time.LocalDate;
-
-public class FuncionarioDto {
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public class EspecialidadeDto {
+import java.time.LocalDate;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class FuncionarioDto {
         private Long id;
         private String usuario;
         private int senha;
@@ -29,4 +27,4 @@ import lombok.AllArgsConstructor;
         private String email;
         private LocalDate nascimento;
     }
-}
+
