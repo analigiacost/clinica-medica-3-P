@@ -7,7 +7,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>clinica-medica-comum</artifactId>
+    <artifactId>clinica-medica-central</artifactId>
     <packaging>jar</packaging>
 
     <name>clinica-medica-comum</name>

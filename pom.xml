@@ -13,7 +13,7 @@
     <module>clinica-medica-administrativo</module>
     <module>clinica-medica-agendamento</module>
     <module>clinica-medica-atendimento</module>
-    <module>clinica-medica-comum</module>
+    <module>clinica-medica-central</module>
   </modules>
 
   <properties>
@@ -59,7 +59,7 @@
 
       <dependency>
         <groupId>br.edu.imepac</groupId>
-        <artifactId>clinica-medica-comum</artifactId>
+        <artifactId>clinica-medica-central</artifactId>
         <version>1.0-SNAPSHOT</version>
         <scope>provided</scope>
       </dependency>
