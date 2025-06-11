@@ -1,4 +1,9 @@
 package br.edu.imepac.repositories;
 
-public interface ConsultaRepository {
+import br.edu.imepac.models.Consulta;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
 }
