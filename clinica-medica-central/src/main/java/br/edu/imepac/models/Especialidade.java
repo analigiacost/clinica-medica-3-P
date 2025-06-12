@@ -15,6 +15,10 @@ public class Especialidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
+    private String descricao;
+
+    @OneToOne
+    @JoinColumn (name = "Funcionario")
+    private Funcionario funcionario;
 }

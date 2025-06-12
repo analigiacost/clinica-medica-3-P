@@ -45,4 +45,8 @@ public class Perfil {
     private boolean atualizarProntuario;
     private boolean deletarProntuario;
     private boolean listarProntuario;
+
+    @OneToOne
+    @JoinColumn (name = "Funcionario")
+    private Funcionario funcionario;
 }

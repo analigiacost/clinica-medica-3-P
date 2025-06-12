@@ -18,4 +18,9 @@ public class Convenio {
     private String receituario;
     private String exames;
     private String osbervacoes;
+
+    @ManyToOne
+    @JoinColumn(name = "Consulta")
+    private Consulta consulta;
+
 }
