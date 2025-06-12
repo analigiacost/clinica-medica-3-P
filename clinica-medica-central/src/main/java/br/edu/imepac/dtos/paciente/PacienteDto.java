@@ -1,7 +1,13 @@
 package br.edu.imepac.dtos.paciente;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PacienteDto {
     private long id;
     private String nome;
