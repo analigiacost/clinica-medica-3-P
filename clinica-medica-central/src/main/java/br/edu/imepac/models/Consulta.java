@@ -32,7 +32,7 @@ public class Consulta {
     @JoinColumn(name = "Convenio")
     private Convenio convenio;
 
-    @OneToOne
+    @OneToMany
     @JoinColumn(name = "Paciente")
     private Paciente paciente;
 }

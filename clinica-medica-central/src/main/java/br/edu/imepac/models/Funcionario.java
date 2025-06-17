@@ -48,7 +48,7 @@ import jakarta.persistence.*;
         @JoinColumn (name = "Perfil")
         private Perfil perfil;
 
-        @ManyToOne
+        @OneToMany
         @JoinColumn (name = "Consulta")
         private Consulta consulta;
     }

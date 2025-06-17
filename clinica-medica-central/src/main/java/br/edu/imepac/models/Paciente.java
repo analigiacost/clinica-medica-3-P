@@ -29,7 +29,7 @@ public class Paciente {
     private String email;
     private LocalDate dataNascimento;
 
-    @OneToOne
+    @OneToMany
     @JoinColumn (name = "Consulta")
     private Consulta consulta;
 }
