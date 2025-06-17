@@ -1,38 +1,67 @@
 package br.edu.imepac.services;
 
+import br.edu.imepac.dtos.perfil.PerfilDto;
+import br.edu.imepac.dtos.perfil.PerfilRequest;
 import br.edu.imepac.dtos.prontuario.ProntuarioDto;
 import br.edu.imepac.dtos.prontuario.ProntuarioRequest;
+import br.edu.imepac.models.Perfil;
+import br.edu.imepac.models.Prontuario;
+import br.edu.imepac.repositories.PerfilRepository;
 import br.edu.imepac.repositories.PronturioRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+import br.edu.imepac.exceptions.NotFoundClinicaMedicaException;
+import org.springframework.stereotype.Service;
+import org.modelmapper.ModelMapper;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class ProntuarioService {
-    private final PronturioRepository pronturioRepository;
+    private ModelMapper modelMapper;
+    private PronturioRepository pronturioRepository;
 
-    public ProntuarioService(PronturioRepository pronturioRepository) {
+    public ProntuarioService(ModelMapper modelMapper, PronturioRepository pronturioRepository) {
+        this.modelMapper = modelMapper;
         this.pronturioRepository = pronturioRepository;
     }
 
-    public void adicionarProntuario(ProntuarioRequest prontuarioRequest) {
-
+    public ProntuarioDto adicionarProntuario(ProntuarioRequest prontuarioRequest) {
+        log.info("Cadadastro de Prontuario - service: {}", prontuarioRequest);
+        Prontuario prontuario = modelMapper.map(prontuarioRequest, Prontuario.class);
+        prontuario = prontuarioRepository.save(prontuario);
+        return modelMapper.map(prontuario, ProntuarioDto.class);
     }
 
-    public void atualizarProntuario(Long id, ProntuarioDto prontuarioDto) {
-
+    public ProntuarioDto atualizarProntuario(Long id, ProntuarioDto prontuarioDto) {
+        log.info("Atualizando prontuario com ID: {}", id);
+        Prontuario prontuarioExistente = prontuarioRepository.findById(id)
+                .orElseThrow(()  -> new NotFoundClinicaMedicaException("Prontuario não encontrada com ID: " + id));
+        modelMapper.map(prontuarioDto, prontuarioExistente);
+        Prontuario prontuarioAtualizado = prontuarioRepository.save(prontuarioExistente);
+        return modelMapper.map(prontuarioAtualizado, ProntuarioDto.class);
     }
 
     public void removerProntuario(Long id) {
-
+        log.info("Removendo prontuario com ID: {}", id);
+        Prontuario prontuario = prontuarioRepository.findById(id)
+                .orElseThrow(() -> new NotFoundClinicaMedicaException("prontuario e não encontrada com ID: " + id));
+        prontuarioRepository.delete(prontuario);
     }
 
     public ProntuarioDto buscarProntuarioPorId(Long id) {
-
-        return null;
+        log.info("Buscando prontuario com ID: {}", id);
+        Prontuario prontuario = prontuarioRepository.findById(id)
+                .orElseThrow(() -> new NotFoundClinicaMedicaException("prontuario não encontrada com ID: " + id));
+        return modelMapper.map(prontuario, ProntuarioDto.class);
     }
 
     public List<ProntuarioDto> listarProntuario() {
-
-        return null;
+        log.info("Listando todos os prontuario");
+        List<Prontuario> prontuarios = prontuarioRepository.findAll();
+        return prontuarios.stream()
+                .map(prontuario -> modelMapper.map(prontuarios, ProntuarioDto.class))
+                .toList();
     }
 }

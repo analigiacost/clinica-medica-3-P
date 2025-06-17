@@ -2,34 +2,63 @@ package br.edu.imepac.services;
 
 import br.edu.imepac.dtos.especialidade.EspecialidadeDto;
 import br.edu.imepac.dtos.especialidade.EspecialidadeRequest;
+import br.edu.imepac.models.Especialidade;
 import br.edu.imepac.repositories.EspecialidadeRepository;
+import br.edu.imepac.exceptions.NotFoundClinicaMedicaException;
+
 import org.springframework.stereotype.Service;
-
+import lombok.extern.slf4j.Slf4j;
 import java.util.List;
+import org.modelmapper.ModelMapper;
 
+@Slf4j
 @Service
 public class EspecialidadeService {
-    private final EspecialidadeRepository especialidadeRepository;
 
-    public EspecialidadeService(EspecialidadeRepository especialidadeRepository) {
+    private ModelMapper modelMapper;
+    private EspecialidadeRepository especialidadeRepository;
+
+    public EspecialidadeService(ModelMapper modelMapper, EspecialidadeRepository especialidadeRepository) {
+        this.modelMapper = modelMapper;
         this.especialidadeRepository = especialidadeRepository;
     }
 
-    public void adicionarEspecialidade(EspecialidadeRequest especialidadeRequest) {
+    public EspecialidadeDto adicionarEspecialidade(EspecialidadeRequest especialidadeRequest) {
+        log.info("Cadadastro de especialidade - service: {}", especialidadeRequest);
+        Especialidade especialidade = modelMapper.map(especialidadeRequest, Especialidade.class);
+        especialidade = especialidadeRepository.save(especialidade);
+        return modelMapper.map(especialidade, EspecialidadeDto.class);
     }
 
-    public void atualizarEspecialidade(Long id, EspecialidadeDto especialidadeDto) {
+    public EspecialidadeDto atualizarEspecialidade(Long id, EspecialidadeDto especialidadeDto) {
+        log.info("Atualixando especialidade com ID: {}", id);
+        Especialidade especialidadeExistente = especialidadeRepository.findById(id)
+                .orElseThrow(()  -> new NotFoundClinicaMedicaException("Especialidade não encontrada com ID: " + id));
+        modelMapper.map(especialidadeDto, especialidadeExistente);
+        Especialidade especialidadeAtualizada = especialidadeRepository.save(especialidadeExistente);
+        return modelMapper.map(especialidadeAtualizada, EspecialidadeDto.class);
     }
 
     public void removerEspecialidade(Long id) {
+        log.info("Removendo especialidade com ID: {}", id);
+        Especialidade especialidade = especialidadeRepository.findById(id)
+                .orElseThrow(() -> new NotFoundClinicaMedicaException("Especialidade não encontrada com ID: " + id));
+       especialidadeRepository.delete(especialidade);
     }
 
     public EspecialidadeDto buscarEspecialidadePorId(Long id) {
-        return null;
+        log.info("Buscando especialidade com ID: {}", id);
+        Especialidade especialidade = especialidadeRepository.findById(id)
+                .orElseThrow(() -> new NotFoundClinicaMedicaException("Especialidade não encontrada com ID: " + id));
+        return modelMapper.map(especialidade, EspecialidadeDto.class);
     }
 
     public List<EspecialidadeDto> listarEspecialidades() {
-        return null;
+        log.info("Listando todas as especialidades");
+        List<Especialidade> especialidades = especialidadeRepository.findAll();
+        return especialidades.stream()
+                .map(especialidade -> modelMapper.map(especialidade, EspecialidadeDto.class))
+                .toList();
     }
 
 }
