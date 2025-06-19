@@ -1,4 +1,4 @@
-package br.edu.imepac.administrativo.exception;
+package br.edu.imepac.agendamento.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

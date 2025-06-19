@@ -1,4 +1,4 @@
-package br.edu.imepac.administrativo.controllers;
+package br.edu.imepac.agendamento.controllers;
 
 import br.edu.imepac.dtos.especialidade.EspecialidadeDto;
 import br.edu.imepac.dtos.especialidade.EspecialidadeRequest;

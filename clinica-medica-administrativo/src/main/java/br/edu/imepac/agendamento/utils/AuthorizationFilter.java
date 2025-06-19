@@ -1,6 +1,6 @@
-package br.edu.imepac.administrativo.utils;
+package br.edu.imepac.agendamento.utils;
 
-import br.edu.imepac.administrativo.exception.AuthenticationClinicaMedicaException;
+import br.edu.imepac.agendamento.exception.AuthenticationClinicaMedicaException;
 import br.edu.imepac.comum.services.PerfilService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

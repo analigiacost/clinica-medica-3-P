@@ -1,4 +1,4 @@
-package br.edu.imepac.administrativo.controllers;
+package br.edu.imepac.agendamento.controllers;
 
 import br.edu.imepac.dtos.prontuario.ProntuarioDto;
 import br.edu.imepac.dtos.prontuario.ProntuarioRequest;
