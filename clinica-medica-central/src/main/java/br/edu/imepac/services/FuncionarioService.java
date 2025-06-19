@@ -22,7 +22,7 @@ import java.util.List;
 public class FuncionarioService {
 
     private ModelMapper modelMapper;
-    private FuncionarioRepository funcionarioRepository;
+    private final FuncionarioRepository funcionarioRepository;
 
     public FuncionarioService(ModelMapper modelMapper, FuncionarioRepository funcionarioRepository) {
         this.modelMapper = modelMapper;

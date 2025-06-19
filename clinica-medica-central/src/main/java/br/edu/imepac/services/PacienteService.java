@@ -1,12 +1,8 @@
 package br.edu.imepac.services;
 
-import br.edu.imepac.dtos.funcionario.FuncionarioDto;
-import br.edu.imepac.dtos.funcionario.FuncionarioRequest;
 import br.edu.imepac.dtos.paciente.PacienteDto;
 import br.edu.imepac.dtos.paciente.PacienteRequest;
-import br.edu.imepac.models.Funcionario;
 import br.edu.imepac.models.Paciente;
-import br.edu.imepac.repositories.FuncionarioRepository;
 import br.edu.imepac.repositories.PacienteRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -20,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PacienteService {
 
     private ModelMapper modelMapper;
-    private PacienteRepository pacienteRepository;
+    private final PacienteRepository pacienteRepository;
 
     public PacienteService(ModelMapper modelMapper, PacienteRepository pacienteRepository) {
         this.modelMapper = modelMapper;
@@ -43,7 +39,7 @@ public class PacienteService {
         return modelMapper.map(pacienteAtualizado, PacienteDto.class);
     }
 
-    public void removerPaciete(Long id) {
+    public void removerPaciente(Long id) {
         log.info("Removendo Paciente com ID: {}", id);
         Paciente paciente = pacienteRepository.findById(id)
                 .orElseThrow(() -> new NotFoundClinicaMedicaException("Paciente não encontrada com ID: " + id));

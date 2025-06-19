@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class PerfilService {
     private ModelMapper modelMapper;
-    private PerfilRepository perfilRepository;
+    private final PerfilRepository perfilRepository;
 
     public PerfilService(ModelMapper modelMapper, PerfilRepository perfilRepository) {
         this.modelMapper = modelMapper;

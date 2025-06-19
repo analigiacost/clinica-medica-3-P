@@ -10,7 +10,7 @@
     <artifactId>clinica-medica-central</artifactId>
     <packaging>jar</packaging>
 
-    <name>clinica-medica-comum</name>
+    <name>clinica-medica-central</name>
     <url>http://maven.apache.org</url>
 
     <properties>

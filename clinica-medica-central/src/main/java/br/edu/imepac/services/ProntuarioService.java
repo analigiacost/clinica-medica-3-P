@@ -1,12 +1,8 @@
 package br.edu.imepac.services;
 
-import br.edu.imepac.dtos.perfil.PerfilDto;
-import br.edu.imepac.dtos.perfil.PerfilRequest;
 import br.edu.imepac.dtos.prontuario.ProntuarioDto;
 import br.edu.imepac.dtos.prontuario.ProntuarioRequest;
-import br.edu.imepac.models.Perfil;
 import br.edu.imepac.models.Prontuario;
-import br.edu.imepac.repositories.PerfilRepository;
 import br.edu.imepac.repositories.PronturioRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -20,11 +16,11 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class ProntuarioService {
     private ModelMapper modelMapper;
-    private PronturioRepository pronturioRepository;
+    private final PronturioRepository prontuarioRepository;
 
     public ProntuarioService(ModelMapper modelMapper, PronturioRepository pronturioRepository) {
         this.modelMapper = modelMapper;
-        this.pronturioRepository = pronturioRepository;
+        this.prontuarioRepository = pronturioRepository;
     }
 
     public ProntuarioDto adicionarProntuario(ProntuarioRequest prontuarioRequest) {

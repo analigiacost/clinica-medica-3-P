@@ -17,7 +17,7 @@ import java.util.List;
 public class ConvenioService {
 
     private ModelMapper modelMapper;
-    private ConvenioRepository convenioRepository;
+    private final ConvenioRepository convenioRepository;
 
     public ConvenioService(ModelMapper modelMapper, ConvenioRepository convenioRepository) {
         this.modelMapper = modelMapper;

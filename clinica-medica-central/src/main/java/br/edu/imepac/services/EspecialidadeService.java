@@ -16,7 +16,7 @@ import org.modelmapper.ModelMapper;
 public class EspecialidadeService {
 
     private ModelMapper modelMapper;
-    private EspecialidadeRepository especialidadeRepository;
+    private final EspecialidadeRepository especialidadeRepository;
 
     public EspecialidadeService(ModelMapper modelMapper, EspecialidadeRepository especialidadeRepository) {
         this.modelMapper = modelMapper;
