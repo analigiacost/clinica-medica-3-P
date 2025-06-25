@@ -1,6 +1,8 @@
 package br.edu.imepac.models;
 
 import java.time.LocalDate;
+import java.util.List;
+
 import br.edu.imepac.domain.EnumTipoFuncionario;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -50,6 +52,6 @@ import jakarta.persistence.*;
 
         @OneToMany
         @JoinColumn (name = "Consulta")
-        private Consulta consulta;
+        private List<Consulta> consulta;
     }
 

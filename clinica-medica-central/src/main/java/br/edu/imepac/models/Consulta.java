@@ -20,19 +20,15 @@ public class Consulta {
     private boolean eRetorno;
     private boolean estaAtiva;
 
-    @OneToMany
-    @JoinColumn(name = "Funcionario")
+    @OneToOne
     private Funcionario funcionario;
 
     @OneToOne
-    @JoinColumn(name = "Prontuario")
     private Prontuario prontuario;
 
-    @OneToMany
-    @JoinColumn(name = "Convenio")
+    @OneToOne
     private Convenio convenio;
 
-    @OneToMany
-    @JoinColumn(name = "Paciente")
+    @OneToOne
     private Paciente paciente;
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.edu.imepac.exceptions.NotFoundClinicaMedicaException;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
+
 import java.util.List;
 
 @Slf4j
@@ -32,8 +33,7 @@ public class ConsultaService {
 
     public ConsultaDto atualizarConsulta(Long id, ConsultaDto consultaDto) {
         log.info("Atualizando Consulta com ID: {}", id);
-        Consulta consultaExistente = consultaRepository.findById(id)
-                .orElseThrow(()  -> new NotFoundClinicaMedicaException("Consulta não encontrada com ID: " + id));
+        Consulta consultaExistente = consultaRepository.findById(id).orElseThrow(() -> new NotFoundClinicaMedicaException("Consulta não encontrada com ID: " + id));
         modelMapper.map(consultaDto, consultaExistente);
         Consulta consultaAtualizada = consultaRepository.save(consultaExistente);
         return modelMapper.map(consultaAtualizada, ConsultaDto.class);
@@ -41,24 +41,20 @@ public class ConsultaService {
 
     public void removerConsulta(Long id) {
         log.info("Removendo Consulta com ID: {}", id);
-        Consulta consulta = consultaRepository.findById(id)
-                .orElseThrow(() -> new NotFoundClinicaMedicaException("Consulta não encontrada com ID: " + id));
+        Consulta consulta = consultaRepository.findById(id).orElseThrow(() -> new NotFoundClinicaMedicaException("Consulta não encontrada com ID: " + id));
         consultaRepository.delete(consulta);
     }
 
     public ConsultaDto buscarConsultaPorId(Long id) {
         log.info("Buscando Consulta com ID: {}", id);
-        Consulta consulta = consultaRepository.findById(id)
-                .orElseThrow(() -> new NotFoundClinicaMedicaException("Consulta não encontrada com ID: " + id));
+        Consulta consulta = consultaRepository.findById(id).orElseThrow(() -> new NotFoundClinicaMedicaException("Consulta não encontrada com ID: " + id));
         return modelMapper.map(consulta, ConsultaDto.class);
     }
 
     public List<ConsultaDto> listarConsulta() {
         log.info("Listando todas as Consulta");
         List<Consulta> consultas = consultaRepository.findAll();
-        return consultas.stream()
-                .map(consulta -> modelMapper.map(consulta, ConsultaDto.class))
-                .toList();
+        return consultas.stream().map(consulta -> modelMapper.map(consulta, ConsultaDto.class)).toList();
     }
 
 }
