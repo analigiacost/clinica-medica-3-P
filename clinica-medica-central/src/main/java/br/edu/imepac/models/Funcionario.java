@@ -42,9 +42,6 @@ import jakarta.persistence.*;
         @JoinColumn (name = "Especialidade")
         private Especialidade especialidade;
 
-        @OneToOne
-        @JoinColumn (name = "EnumTipoFuncionario")
-        private EnumTipoFuncionario enumTipoFuncionario;
 
         @OneToOne
         @JoinColumn (name = "Perfil")

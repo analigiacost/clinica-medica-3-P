@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
+
 
 @Data
 @AllArgsConstructor
@@ -19,8 +21,8 @@ public class Convenio {
     private String exames;
     private String osbervacoes;
 
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "Consulta")
-    private Consulta consulta;
+    private List<Consulta> consulta;
 
 }

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDate;
+import java.util.List;
+
 
 @Data
 @AllArgsConstructor
@@ -30,6 +32,5 @@ public class Paciente {
     private LocalDate dataNascimento;
 
     @OneToMany
-    @JoinColumn (name = "Consulta")
-    private Consulta consulta;
+    private List<Consulta> consulta;
 }
