@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConvenioRequest {
-    private String receituario;
-    private String exames;
-    private String osbervacoes;
+    private String nome;
+    private String descricao;
 }

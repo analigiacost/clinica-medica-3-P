@@ -17,9 +17,8 @@ public class Convenio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
-    private String receituario;
-    private String exames;
-    private String osbervacoes;
+    private String nome;
+    private String descricao;
 
     @OneToMany
     @JoinColumn(name = "Consulta")

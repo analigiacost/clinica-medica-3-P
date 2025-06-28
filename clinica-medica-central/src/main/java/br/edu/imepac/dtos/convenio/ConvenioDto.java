@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ConvenioDto {
     public long id;
-    private String receituario;
-    private String exames;
-    private String osbervacoes;
+    private String nome;
+    private String descricao;
 }
